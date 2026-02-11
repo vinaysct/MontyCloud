@@ -34,10 +34,10 @@ async def upload_image(
         Item={
             "image_id": image_id,
             "user_id": user_id,
-            "tags": tags.split(",") if tags else [],
-            "s3_key": s3_key,
-            "content_type": file.content_type,
-            "created_at": datetime.datetime.utcnow().isoformat()
+            #"tags": tags.split(",") if tags else [],
+            #"s3_key": s3_key,
+            #"content_type": file.content_type,
+            #"created_at": datetime.datetime.utcnow().isoformat()
         }
     )
     return {"image_id": image_id}
