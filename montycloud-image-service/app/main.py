@@ -5,6 +5,7 @@ from app.aws import s3, table
 from app.models import *
 from typing import List, Optional
 from boto3.dynamodb.conditions import Key
+from datetime import datetime
 
 app = FastAPI(title="Image Upload Service")
 
@@ -35,9 +36,9 @@ async def upload_image(
             "image_id": image_id,
             "user_id": user_id,
             #"tags": tags.split(",") if tags else [],
-            #"s3_key": s3_key,
-            #"content_type": file.content_type,
-            #"created_at": datetime.datetime.utcnow().isoformat()
+            "s3_key": s3_key,
+            "content_type": file.content_type,
+            "created_at": datetime.utcnow().isoformat()
         }
     )
     return {"image_id": image_id}
@@ -97,7 +98,7 @@ def view_image(image_id: str):
         Params={"Bucket": BUCKET, "Key": resp["Item"]["s3_key"]},
         ExpiresIn=3600
     )
-    return {"url": url}
+    return {"image_id": image_id, "url": url}
 
 @app.delete("/images/{image_id}", response_model=DeleteImageResponse)
 def delete_image(image_id: str):
