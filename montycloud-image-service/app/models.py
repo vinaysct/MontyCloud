@@ -6,7 +6,7 @@ from datetime import datetime
 class ImageMetadata(BaseModel):
     image_id: str
     user_id: str
-    tags: List[str] = []
+    #tags: List[str] = []
     content_type: str
     created_at: datetime
     s3_key: str
@@ -20,8 +20,8 @@ class UploadImageResponse(BaseModel):
 class ImageListResponse(BaseModel):
     image_id: str
     user_id: str
-    tags: List[str]
-    created_at: datetime
+    #tags: List[str]
+    #created_at: datetime
 
 class ViewImageResponse(BaseModel):
     image_id: str

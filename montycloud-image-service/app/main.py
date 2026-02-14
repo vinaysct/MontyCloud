@@ -65,6 +65,7 @@ def list_images(
         )
     
         items = response.get("Items", [])
+        print(items)
     
         # Filter by tag
         if tag:
